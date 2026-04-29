@@ -39,14 +39,16 @@ public class Grade {
 	@ManyToOne
 	@JoinColumn(name="Sid")
 	private Student student;
-		
 	
 	//sasaiste ar kursu
+	@ManyToOne
 	@JoinColumn(name="Cid")
 	private Course course;
 
 	
-	public Grade(int grade) {
+	public Grade(int grade, Student student, Course course) {
 		setGrade(grade);
+		setStudent(student);
+		setCourse(course);
 	}
 }

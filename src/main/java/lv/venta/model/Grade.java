@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -16,29 +17,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Table(name="SubjectTable")
+@Table(name="GradeTable")
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class Subject {
+public class Grade {
 	@Setter(value = AccessLevel.NONE)
-	@Column(name= "Sid")
+	@Column(name= "Gid")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long sid;
+	private long gid;
 	
-	@Column(name= "Title")
-	@NotNull
-	@NotEmpty
-	@Pattern(regexp = "[A-Z]{1}[a-z]{2,30}")
-	private String title;
+	@Column(name= "Value")
+	@Min(0)
+	@Max(10)
+	private int value;
 	
-	@Column(name= "CP")
-	private int cp;
-	
-	public Subject(String title, String surname) {
-		setTitle(title);
+	public Grade(int value) {
+		setValue(value);
 	}
 }

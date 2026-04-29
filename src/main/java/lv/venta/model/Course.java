@@ -1,16 +1,15 @@
 package lv.venta.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -20,46 +19,41 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Table(name="ProfessorTable")
+@Table(name="CourseTable")
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class Professor {
+public class Course {
 	@Setter(value = AccessLevel.NONE)
-	@Column(name= "Pid")
+	@Column(name= "Cid")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long pid;
+	private long cid;
 	
-	@Column(name= "Name")
+	@Column(name= "Title")
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp = "[A-Z]{1}[a-z]{2,30}")
-	private String name;
+	private String title;
 	
-	@Column(name= "Surname")
-	@NotNull
-	@NotEmpty
-	@Pattern(regexp = "[A-Z]{1}[a-z]{2,30}")
-	private String surname;
-	
-	@Column(name= "Degree")
-	@Enumerated(EnumType.STRING)
-	@NotNull
-	private Degree degree;
+	@Column(name= "CreditPoints")
+	@Min(0)
+	@Max(30)
+	private int creditPoints;
 	
 	
-	//sasaiste ar kursu
-	@OneToOne(mappedBy = "professor")
-	@ToString.Exclude
-	//@JsonIgnore, ja citas sistemas lieto
-	private Course course;
+	//sasaiste ar profesoru
+	@OneToOne
+	@JoinColumn(name="Pid")
+	private Professor professor;
 	
-	public Professor(String name, String surname, Degree degree) {
-		setName(name);
-		setSurname(surname);
-		setDegree(degree);
+	public Course(String title, int creditPoints, Professor professor) {
+		setTitle(title);
+		setCreditPoints(creditPoints);
+		setProfessor(professor);
 	}
+
+
 }

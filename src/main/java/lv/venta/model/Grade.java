@@ -37,7 +37,7 @@ public class Grade {
 
 	//sasaiste ar studentu
 	@ManyToOne
-	@JoinColumn(name="Sid")
+	@JoinColumn(name="Pid")//jo manto no Personas
 	private Student student;
 	
 	//sasaiste ar kursu

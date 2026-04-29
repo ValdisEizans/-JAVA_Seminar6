@@ -22,8 +22,6 @@ public class JavaSeminar6Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavaSeminar6Application.class, args);
-		
-		
 	}
 
 	@Bean//izpilda automatiski funkciju startejot sistemu
@@ -41,10 +39,9 @@ public class JavaSeminar6Application {
 				Professor prof2= new Professor("Andris","Gobzems",Degree.phd);
 				profRepo.saveAll(Arrays.asList(prof1,prof2));
 				
-				Course course1 = new Course("Augstaka matematika",3,prof1);
+				Course course1 = new Course("Matematika",3,prof1);
 				Course course2 = new Course("Ekonomika",6,prof2);
 				courseRepo.saveAll(Arrays.asList(course1,course2));
-
 				
 				Grade grade1 = new Grade(4,stud1,course1);
 				Grade grade2 = new Grade(5,stud1,course2);

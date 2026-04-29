@@ -5,12 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,12 +30,23 @@ public class Grade {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long gid;
 	
-	@Column(name= "Value")
+	@Column(name= "Grade")
 	@Min(0)
 	@Max(10)
-	private int value;
+	private int grade;
+
+	//sasaiste ar studentu
+	@ManyToOne
+	@JoinColumn(name="Sid")
+	private Student student;
+		
 	
-	public Grade(int value) {
-		setValue(value);
+	//sasaiste ar kursu
+	@JoinColumn(name="Cid")
+	private Course course;
+
+	
+	public Grade(int grade) {
+		setGrade(grade);
 	}
 }

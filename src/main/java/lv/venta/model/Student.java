@@ -25,24 +25,12 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Student {
+public class Student extends Person {
 	@Setter(value = AccessLevel.NONE)
 	@Column(name= "Sid")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long sid;
-	
-	@Column(name= "Name")
-	@NotNull
-	@NotEmpty
-	@Pattern(regexp = "[A-Z]{1}[a-z]{2,30}")
-	private String name;
-	
-	@Column(name= "Surname")
-	@NotNull
-	@NotEmpty
-	@Pattern(regexp = "[A-Z]{1}[a-z]{2,30}")
-	private String surname;
 	
 	//sasaiste ar atzimi
 	@OneToMany(mappedBy = "student")
@@ -50,7 +38,6 @@ public class Student {
 	public Collection<Grade> grades = new ArrayList<Grade>();
 
 	public Student(String name, String surname) {
-		setName(name);
-		setSurname(surname);
+		super(name, surname);
 	}
 }

@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<body>
+		<h1>Visi Studenti no JAVA!</h1>
+		<h1 th:text="${header}"></h1>
+		<table style="border: 1px solid black;">
+		<tr th:each="tempS : ${package}" style="border: 1px solid black;">
+			<td th:text="${tempS.sid}" style="border: 1px solid black;"></td>
+			<td th:text="${tempS.name}" style="border: 1px solid black;"></td>
+			<td th:text="${tempS.surname}" style="border: 1px solid black;"></td>
+		</tr>
+		</table>
+	</body>
+</html>

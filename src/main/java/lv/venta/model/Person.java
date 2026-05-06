@@ -21,6 +21,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 //2. variants - no klases veido repo
+//TABLE_PER_CLASS - katrai klasei ir sava tabula
+//JOINED - bazes dati bazes tabula, bernu dati tikai specifiskie
+//SINGLE_TABLE - visi dati apvienoti viena tabula
+
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="Person")
 @Entity

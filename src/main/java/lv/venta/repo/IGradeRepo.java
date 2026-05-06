@@ -15,9 +15,9 @@ public interface IGradeRepo extends CrudRepository<Grade, Long>{
 
 	@Query(nativeQuery = true, 
 			value = "Select AVG(t1.gr_value)"
-			+ "From grade_table as t1" 
-			+ "Join course_table as t2" 
-			+ "ON t1.cid=t2.cid"
+			+ "From grade_table as t1 " 
+			+ "Join course_table as t2 " 
+			+ "ON t1.cid=t2.cid "
 			+ "Where t2.title=:title;")
 	float calculateAverageGradeByCourseTitle(String title);
 

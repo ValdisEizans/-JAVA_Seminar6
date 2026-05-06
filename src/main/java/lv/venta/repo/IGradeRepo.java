@@ -2,6 +2,7 @@ package lv.venta.repo;
 
 import java.util.ArrayList;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import lv.venta.model.Grade;
@@ -9,5 +10,14 @@ import lv.venta.model.Grade;
 public interface IGradeRepo extends CrudRepository<Grade, Long>{
 
 	ArrayList<Grade> findByStudentSid(long id);
+
+	ArrayList<Grade> findByStudentNameAndStudentSurname(String name, String surname);
+
+	@Query(nativeQuery = true, value = "Select AVG(t1.gr_value)"
+			+ "From grade_table as t1"
+			+ "Join course_table as t2"
+			+ "on t1.cid=t2.cid"
+			+ "Where t2.title=:title;")
+	float calculateAverageGradeByCourseTitle(String title);
 
 }

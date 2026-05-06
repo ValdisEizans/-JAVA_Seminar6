@@ -13,7 +13,8 @@ public interface IGradeRepo extends CrudRepository<Grade, Long>{
 
 	ArrayList<Grade> findByStudentNameAndStudentSurname(String name, String surname);
 
-	@Query(nativeQuery = true, value = "Select AVG(t1.gr_value)"
+	@Query(nativeQuery = true, 
+			value = "Select AVG(t1.gr_value)"
 			+ "From grade_table as t1"
 			+ "Join course_table as t2"
 			+ "on t1.cid=t2.cid"

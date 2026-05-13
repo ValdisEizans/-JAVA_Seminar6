@@ -10,7 +10,7 @@ import lv.venta.model.Student;
 
 public interface IFilterService {
 	//visi profesori, kuriem ir konkretais grads
-	public abstract ArrayList<Professor> filterProfessorByDegree(Degree degree) throws Exception;
+	public abstract ArrayList<Professor> filterProfessorsByDegree(Degree degree) throws Exception;
 	
 	//kursi,kuri atlasiti pec profesora id
 	public abstract ArrayList<Course> filterCoursesByProfessorId(long id) throws Exception;

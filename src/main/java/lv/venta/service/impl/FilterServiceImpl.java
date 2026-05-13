@@ -32,7 +32,7 @@ public class FilterServiceImpl implements IFilterService{
 	private IGradeRepo gradeRepo;
 	
 	@Override
-	public ArrayList<Professor> filterProfessorByDegree(Degree degree) throws Exception {
+	public ArrayList<Professor> filterProfessorsByDegree(Degree degree) throws Exception {
 		if(degree == null) {
 			throw new Exception("Nav noradits grads!");
 		}

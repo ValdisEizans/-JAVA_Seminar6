@@ -46,7 +46,7 @@ public class Professor extends Person{
 	//sasaiste ar kursu
 	@ManyToMany(mappedBy = "professors")
 	@ToString.Exclude
-	public Collection<Course> courses = new ArrayList<Course>();
+	public Collection<Course> courses = new ArrayList<>();
 	
 	public Professor(String name, String surname, Degree degree) {
 		super(name, surname);

@@ -49,7 +49,6 @@ public class Course {
 	@Max(30)
 	private int creditPoints;
 	
-	
 	//sasaiste ar profesoru
 	@ManyToMany
 	@JoinTable(name = "ProfCourseTable", joinColumns = @JoinColumn(name = "Cid"), inverseJoinColumns = @JoinColumn(name = "Pid"))

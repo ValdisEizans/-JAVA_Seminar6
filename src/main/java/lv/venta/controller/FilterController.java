@@ -26,7 +26,7 @@ public class FilterController {
 	@GetMapping("/professor/degree/{inputdegree}")//localhost:8080/filter/professor/degree/phd
 	public String getProfessorsByDegree(@PathVariable(name = "inputdegree") Degree inputdegree, Model model) {
 		try {
-			ArrayList<Professor> professorsFromDB = filterService.filterProfessorByDegree(inputdegree); 
+			ArrayList<Professor> professorsFromDB = filterService.filterProfessorsByDegree(inputdegree); 
 			model.addAttribute("package", professorsFromDB);
 			return "show-multiple-professors";
 		}
@@ -37,7 +37,7 @@ public class FilterController {
 	}
 	
 	@GetMapping("/courses/professor/{id}")//localhost:8080/filter/courses/professor/2
-	public String getCoursesById(@PathVariable(name = "id") Long id, Model model) {
+	public String getCourseByProfessorId(@PathVariable(name = "id") Long id, Model model) {
 		try {
 			ArrayList<Course> coursesFromDB = filterService.filterCoursesByProfessorId(id); 
 			model.addAttribute("package", coursesFromDB);

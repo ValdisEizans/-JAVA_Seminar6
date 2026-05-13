@@ -42,7 +42,8 @@ public class JavaSeminar6Application {
 				
 				Course course1 = new Course("Matematika",3,prof1);
 				Course course2 = new Course("Ekonomika",6,prof2);
-				courseRepo.saveAll(Arrays.asList(course1,course2));
+				Course course3 = new Course("Python",6,prof3);
+				courseRepo.saveAll(Arrays.asList(course1,course2,course3));
 				
 				Grade grade1 = new Grade(4,stud1,course1);
 				Grade grade2 = new Grade(5,stud1,course2);

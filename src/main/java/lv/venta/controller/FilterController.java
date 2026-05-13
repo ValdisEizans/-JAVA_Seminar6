@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lv.venta.model.Course;
 import lv.venta.model.Degree;
+import lv.venta.model.Grade;
 import lv.venta.model.Professor;
+import lv.venta.model.Student;
 import lv.venta.service.IFilterService;
 
 @Controller
@@ -32,5 +35,31 @@ public class FilterController {
 			return "error-page";
 		}
 	}
+	
+	@GetMapping("/courses/{inputid}")//localhost:8080/filter/courses/2
+	public String getCoursesById(@PathVariable(name = "inputid") Long inputid, Model model) {
+		try {
+			ArrayList<Course> coursesFromDB = filterService.filterCoursesByProfessorId(inputid); 
+			model.addAttribute("package", coursesFromDB);
+			return "show-multiple-courses";
+		}
+		catch (Exception e) {
+			model.addAttribute("package", e.getMessage());
+			return "error-page";
+		}
+	}
+	@GetMapping("/grades/student/{name}/{surname}")//localhost:8080/filter/grades/student/Valdis/Eizans
+	public String getStudentsByNameAndSurname(@PathVariable(name = "name") String name, @PathVariable(name = "surname") String surname,Model model) {
+		try {
+			ArrayList<Grade> gradesFromDB = filterService.filterGradesByStudentNameAndSurname(name, surname); 
+			model.addAttribute("package", gradesFromDB);
+			return "show-multiple-grades";
+		}
+		catch (Exception e) {
+			model.addAttribute("package", e.getMessage());
+			return "error-page";
+		}
+	}
+
 
 }

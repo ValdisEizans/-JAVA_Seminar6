@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<body>
+		<h1>Visas atzimes pec studenta varda un uzvarda</h1>
+		<h1 th:text="${header}"></h1>
+		<table style="border: 1px solid black;">
+		<tr th:each="tempG : ${package}" style="border: 1px solid black;">
+			<td th:text="${tempG.gid}" style="border: 1px solid black;"></td>
+			<td th:text="${tempG.student.name}" style="border: 1px solid black;"></td>
+			<td th:text="${tempG.student.surname}" style="border: 1px solid black;"></td>
+			<td th:text="${tempG.course.title}" style="border: 1px solid black;"></td>
+			<td th:text="${tempG.grade}" style="border: 1px solid black;"></td>
+		</tr>
+		</table>
+	</body>
+</html>

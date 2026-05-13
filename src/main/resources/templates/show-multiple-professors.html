@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<body>
+		<h1>Visi Profesori pec grada!</h1>
+		<h1 th:text="${header}"></h1>
+		<table style="border: 1px solid black;">
+		<tr th:each="tempP : ${package}" style="border: 1px solid black;">
+			<td th:text="${tempP.pid}" style="border: 1px solid black;"></td>
+			<td th:text="${tempP.name}" style="border: 1px solid black;"></td>
+			<td th:text="${tempP.surname}" style="border: 1px solid black;"></td>
+			<td th:text="${tempP.degree}" style="border: 1px solid black;"></td>
+		</tr>
+		</table>
+	</body>
+</html>

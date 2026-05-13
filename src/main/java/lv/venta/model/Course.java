@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -49,9 +51,10 @@ public class Course {
 	
 	
 	//sasaiste ar profesoru
-	@OneToOne
-	@JoinColumn(name="Pid")
-	private Professor professor;
+	@ManyToMany
+	@JoinTable(name = "ProfCourseTable", joinColumns = @JoinColumn(name = "Pid"), inverseJoinColumns = @JoinColumn(name = "Cid"))
+	@ToString.Exclude
+	public Collection<Professor> profesors = new ArrayList<Professor>();
 
 	//sasaiste ar atzimi
 	@OneToMany(mappedBy = "course")
@@ -61,7 +64,33 @@ public class Course {
 	public Course(String title, int creditPoints, Professor professor) {
 		setTitle(title);
 		setCreditPoints(creditPoints);
-		setProfessor(professor);
+		try {
+			addProfessor(professor);
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void addProfessor(Professor inputprofessor) throws Exception {
+		if(inputprofessor == null) {
+			throw new Exception("Nekorekti ievades dati!");
+		}
+		if(profesors.contains(inputprofessor)) {
+			throw new Exception(inputprofessor.getSurname() + " jau eksiste saraksta!");
+		}
+		profesors.add(inputprofessor);
+	}
+	
+	//Lidzigi veido remove funkciju
+	public void removeProfessor(Professor inputprofessor) throws Exception {
+		if(inputprofessor == null) {
+			throw new Exception("Nekorekti ievades dati!");
+		}
+		if(!profesors.contains(inputprofessor)) {
+			throw new Exception(inputprofessor.getSurname() + " neeksiste saraksta!");
+		}
+		profesors.remove(inputprofessor);
 	}
 
 

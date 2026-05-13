@@ -52,9 +52,9 @@ public class Course {
 	
 	//sasaiste ar profesoru
 	@ManyToMany
-	@JoinTable(name = "ProfCourseTable", joinColumns = @JoinColumn(name = "Pid"), inverseJoinColumns = @JoinColumn(name = "Cid"))
+	@JoinTable(name = "ProfCourseTable", joinColumns = @JoinColumn(name = "Cid"), inverseJoinColumns = @JoinColumn(name = "Pid"))
 	@ToString.Exclude
-	public Collection<Professor> profesors = new ArrayList<Professor>();
+	public Collection<Professor> professors = new ArrayList<Professor>();
 
 	//sasaiste ar atzimi
 	@OneToMany(mappedBy = "course")
@@ -76,10 +76,10 @@ public class Course {
 		if(inputprofessor == null) {
 			throw new Exception("Nekorekti ievades dati!");
 		}
-		if(profesors.contains(inputprofessor)) {
+		if(professors.contains(inputprofessor)) {
 			throw new Exception(inputprofessor.getSurname() + " jau eksiste saraksta!");
 		}
-		profesors.add(inputprofessor);
+		professors.add(inputprofessor);
 	}
 	
 	//Lidzigi veido remove funkciju
@@ -87,10 +87,10 @@ public class Course {
 		if(inputprofessor == null) {
 			throw new Exception("Nekorekti ievades dati!");
 		}
-		if(!profesors.contains(inputprofessor)) {
+		if(!professors.contains(inputprofessor)) {
 			throw new Exception(inputprofessor.getSurname() + " neeksiste saraksta!");
 		}
-		profesors.remove(inputprofessor);
+		professors.remove(inputprofessor);
 	}
 
 

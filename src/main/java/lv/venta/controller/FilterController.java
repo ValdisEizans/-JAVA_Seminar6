@@ -36,10 +36,10 @@ public class FilterController {
 		}
 	}
 	
-	@GetMapping("/courses/{inputid}")//localhost:8080/filter/courses/2
-	public String getCoursesById(@PathVariable(name = "inputid") Long inputid, Model model) {
+	@GetMapping("/courses/professor/{id}")//localhost:8080/filter/courses/professor/2
+	public String getCoursesById(@PathVariable(name = "id") Long id, Model model) {
 		try {
-			ArrayList<Course> coursesFromDB = filterService.filterCoursesByProfessorId(inputid); 
+			ArrayList<Course> coursesFromDB = filterService.filterCoursesByProfessorId(id); 
 			model.addAttribute("package", coursesFromDB);
 			return "show-multiple-courses";
 		}
@@ -49,7 +49,7 @@ public class FilterController {
 		}
 	}
 	@GetMapping("/grades/student/{name}/{surname}")//localhost:8080/filter/grades/student/Valdis/Eizans
-	public String getStudentsByNameAndSurname(@PathVariable(name = "name") String name, @PathVariable(name = "surname") String surname,Model model) {
+	public String getGradesByStudentNameAndSurname(@PathVariable(name = "name") String name, @PathVariable(name = "surname") String surname,Model model) {
 		try {
 			ArrayList<Grade> gradesFromDB = filterService.filterGradesByStudentNameAndSurname(name, surname); 
 			model.addAttribute("package", gradesFromDB);
